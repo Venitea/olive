@@ -1,0 +1,32 @@
+.article{
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+h3{
+    cursor: move;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: 300;
+    border-top: 2px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+.head1{
+    color: #31708f;
+    background-color: #47bcde;
+    border-color: #bce8f1;
+}
+.head2{
+    background-color: #FFFFFF;
+    border-color: #DDDDDD;
+    color: #797979;
+}
+.head3{
+    color: #fff;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+.article_content{
+    background: #fff;
+    padding: 15px;
+}
