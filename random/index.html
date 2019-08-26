@@ -1,0 +1,164 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>random</title>
+    <style>
+        *{
+            margin: 0PX;
+            padding: 0px;
+        }
+        .box{
+            /* border: 1px solid red; */
+            width: 80%;
+            margin: 50px auto;
+            text-align: center;
+            position: relative;
+        }
+        .name{
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid blue;
+        }
+        button{
+            outline: 0;
+            width: 100px;
+            height: 45px;
+            border: 1px solid #efefef;
+            cursor: pointer;
+            color: #fff;
+            background: #0a57d3;
+            font-size: 20px;
+        }
+        button:hover{
+            background: #0f55c4;
+        }
+        .all_name{
+            display: flex;
+            flex-wrap: wrap;
+            padding: 15px;
+        }
+        .selected{
+            border: 1px solid rgb(10, 188, 204);
+            transform: scale(1.3);
+            border-radius: 5px;
+            box-shadow: 4px 0px 3px 1px #e4e0e0;
+        }
+        .al{
+            width: 100%;
+            position: absolute;
+            top: -300px;
+            left: 0px;
+            transition: .3s;
+            /* border: 1px solid blueviolet; */
+        }
+        .alert{
+            width: 50%;
+            margin: 30px auto;
+            padding: 15px 35px;
+            box-sizing: border-box;
+            border: 1px solid rgb(6, 207, 90);
+            background: #fff;
+            /* display: none; */
+            border-radius: 10px;
+        }
+        .alert p{
+            margin-bottom: 10px;
+        }
+        .stu{
+            font-weight: 600;
+            font-size: 18px;
+            color: coral;
+        }
+        .close{
+            width: 80px;
+            height: 40px;
+            margin: 0px auto;
+            line-height: 40px;
+            cursor: pointer;
+            border: 1px solid #d1cece;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="all_name">
+            <!-- <span class="name selected">lll</span> -->
+        </div>
+        <button class="btn">开始</button>
+        <button class="answer">答题</button>
+        <div class="al">
+            <div class="alert">
+                <p class="stu">名字</p>
+                <p class="question">你的问题是：你的问题是你的问题是你的问题是你的问题是你的问题是你的问题是你的问题是你的问题是</p>
+                <div class="close">关闭</div>
+            </div>  
+        </div>
+    </div>
+    <script>
+        var arr = ['吴云龙','朱伟祺','时山钧','李彪','吴燚波','付凤云','陈赞',
+                   '叶胜隆','章辉','闫诤','徐泰彬','吴雄睿','邵挺','姜铭','毛文女',
+                   '严敏','王加晓','谢寅楚','蔡楚宏','谢泽群','郑梦圆','尹娜','周厚新',
+                   '王子豪','蒋志伟','刘锦哲','周峰','张圣荣','潘宇熙','桂新阳']
+        var array = ['使用for in循环数组中的元素会枚举原型链上的所有属性，过滤这些属性的方式是使用什么函数',
+                     '问题2','问题3','问题4','问题5','问题6'];
+        var list = document.getElementsByClassName('all_name')[0];
+        // console.log(list);
+        for(var i=0; i<arr.length; i++){
+            var span = document.createElement('span');
+            span.setAttribute('class','name');
+            span.appendChild(document.createTextNode(arr[i]));
+            list.appendChild(span);
+            // console.log(arr[i]);
+        }
+        var start = document.getElementsByClassName('btn')[0];
+        var answer = document.getElementsByClassName('answer')[0];
+        var close = document.getElementsByClassName('close')[0];
+        var al = document.getElementsByClassName('al')[0];
+        var he = document.getElementsByClassName('name');
+        var time = null;
+        var last = 0;
+        var flag = false;   
+        start.onclick = function(){
+            var n = 0;
+            flag = true;
+            for(var i=0; i<he.length; i++){
+                he[i].className = 'name';
+            }
+            time = setInterval(function(){
+                he[last].className = 'name';
+                var num = Math.round(Math.random() * 30);
+                he[num].className = 'name selected';
+                last = num;
+                n++;
+                if(n > 30){
+                    clearInterval(time);
+                }
+            },100);
+        }
+        
+        answer.onclick = function(){
+            var student = document.getElementsByClassName('stu')[0];
+            var question = document.getElementsByClassName('question')[0];
+            al.style.top = '0px';
+            if(!flag){
+                student.innerHTML = '';
+                question.innerHTML = '请先选择回答问题的人！！';
+                
+            }else{
+                var m = Math.round(Math.random()*6);
+                student.innerHTML = arr[last];
+                question.innerHTML = '请回答：' + array[m];
+            }  
+        }
+        close.onclick = function(){
+            al.style.top = '-300px';
+        }
+    </script>
+</body>
+</html>
